@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class Notifications extends Component {
   render() {
     return (
       <div>
-        App
+        Notifications
       </div>
     );
   }
 }
 
-export default App;
+export default Notifications;
