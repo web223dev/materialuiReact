@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Sidebar from 'components/Sidebar/Sidebar';
-
+// MaterialUI core component
+import withStyles from "@material-ui/core/styles/withStyles";
+//core components
 import routes from 'routes.js';
 import image from 'assets/img/sidebar-2.jpg';
 import logo from "assets/img/reactlogo.png";
+import dashbaordStyle from 'assets/jss/material-dashboard-react/layouts/dashboardStyle';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -24,8 +27,9 @@ class Dashboard extends Component {
   render() {
     const { image, color, mobileOpen } = this.state;
     const { handleDrawerToggle } = this;
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.wrapper}>
         <Sidebar
           routes={routes}
           logoText={"web223dev"}
@@ -35,7 +39,7 @@ class Dashboard extends Component {
           open={mobileOpen}
           color={color}
         />
-        <div>
+        <div className={classes.mainPanel} ref="mainPanel">
 
         </div>
       </div>
@@ -43,4 +47,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default withStyles(dashbaordStyle)(Dashboard);
