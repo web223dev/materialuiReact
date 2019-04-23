@@ -27,7 +27,7 @@ class Dashboard extends Component {
   render() {
     const { image, color, mobileOpen } = this.state;
     const { handleDrawerToggle } = this;
-    const { classes } = this.props;
+    const { classes, ...rest } = this.props;
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -38,6 +38,7 @@ class Dashboard extends Component {
           handleDrawerToggle={handleDrawerToggle}
           open={mobileOpen}
           color={color}
+          {...rest}
         />
         <div className={classes.mainPanel} ref="mainPanel">
 
