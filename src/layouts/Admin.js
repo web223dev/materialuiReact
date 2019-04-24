@@ -8,10 +8,12 @@ import withStyles from "@material-ui/core/styles/withStyles";
 //core components
 import Navbar from 'components/Navbars/Navbar';
 import Sidebar from 'components/Sidebar/Sidebar';
+import FixedPlugin from "components/FixedPlugin/FixedPlugin";
 import routes from 'routes.js';
 import image from 'assets/img/sidebar-2.jpg';
 import logo from "assets/img/reactlogo.png";
 import dashbaordStyle from 'assets/jss/material-dashboard-react/layouts/dashboardStyle';
+import Footer from "components/Footer/Footer";
 
 const switchRoutes = (
   <Switch>
@@ -34,10 +36,23 @@ class Dashboard extends Component {
     this.state = {
       image: image,
       color: "blue",
-      mobileOpen: false
+      mobileOpen: false,
+      fixedClasses: "dropdown",
     }
   }
-
+  handleImageClick = image => {
+    this.setState({ image: image });
+  };
+  handleColorClick = color => {
+    this.setState({ color: color });
+  };
+  handleFixedClick = () => {
+    if (this.state.fixedClasses === "dropdown") {
+      this.setState({ fixedClasses: "dropdown show" });
+    } else {
+      this.setState({ fixedClasses: "dropdown" });
+    }
+  };
   handleDrawerToggle = () => {
     this.setState({
       mobileOpen: !this.state.mobileOpen
@@ -96,7 +111,16 @@ class Dashboard extends Component {
             </div>
           ) : (
               <div className={classes.map}>{switchRoutes}</div>
-            )}
+          )}
+          {this.getRoute() ? <Footer /> : null}
+          <FixedPlugin
+            handleImageClick={this.handleImageClick}
+            handleColorClick={this.handleColorClick}
+            bgColor={this.state["color"]}
+            bgImage={this.state["image"]}
+            handleFixedClick={this.handleFixedClick}
+            fixedClasses={this.state.fixedClasses}
+          />
         </div>
       </div>
     );
