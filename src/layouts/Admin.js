@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 //beautiful scrollbar
 import PerfectScrollbar from 'perfect-scrollbar';
 import "perfect-scrollbar/css/perfect-scrollbar.css";
@@ -15,17 +15,16 @@ import dashbaordStyle from 'assets/jss/material-dashboard-react/layouts/dashboar
 
 const switchRoutes = (
   <Switch>
-    {routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
-    })}
+    {routes.map((prop, key) =>
+      (prop.layout === "/admin") &&
+      (
+        <Route
+          path={prop.layout + prop.path}
+          component={prop.component}
+          key={key}
+        />
+      )
+    )}
   </Switch>
 );
 
@@ -48,8 +47,8 @@ class Dashboard extends Component {
     return this.props.location.pathname !== "/admin/maps";
   }
   resizeFunction = () => {
-    if(window.innerWidth >=960){
-      this.setState({mobileOpen: false})
+    if (window.innerWidth >= 960) {
+      this.setState({ mobileOpen: false })
     }
   }
   componentDidMount() {
@@ -72,7 +71,7 @@ class Dashboard extends Component {
   render() {
     const { image, color, mobileOpen } = this.state;
     const { handleDrawerToggle } = this;
-    const { classes, ...rest } = this.props; 
+    const { classes, ...rest } = this.props;
     return (
       <div className={classes.wrapper}>
         <Sidebar
@@ -96,8 +95,8 @@ class Dashboard extends Component {
               <div className={classes.container}>{switchRoutes}</div>
             </div>
           ) : (
-            <div className={classes.map}>{switchRoutes}</div>
-          )}
+              <div className={classes.map}>{switchRoutes}</div>
+            )}
         </div>
       </div>
     );
